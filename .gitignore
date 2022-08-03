@@ -1,0 +1,16 @@
+# プラグイン
+node_modules/
+
+# JetBrain User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+
+## File-based project format:
+*.iws
+
+# IntelliJ
+/out/
+dictionary.cpython-310.pyc
