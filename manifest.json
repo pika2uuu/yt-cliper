@@ -1,0 +1,13 @@
+{
+  "name": "拡張機能",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "説明欄",
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/watch?v=*"],
+      "js": ["insert_menu.js"]
+    }
+  ]
+}
+
