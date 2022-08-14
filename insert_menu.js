@@ -25,6 +25,23 @@ now_button.addEventListener('click', function() {
 // placeholder をクリックしてコメント欄を出現させる
 // document.querySelector("#placeholder-area").click()
 
+// コメント欄が出現するのを監視
+window.setTimeout(() =>{
+    const targetNode = document.querySelectorAll("#contents")[3]
+    if(targetNode == null){
+        alert('存在しません')
+    } else {
+        alert('存在する')
+    }
+
+    const config = { childList: true };
+    const observer = new MutationObserver(() => {
+        alert('コメント欄が出現しました。');
+    });
+    observer.observe(targetNode, config)
+}, 4000);
+
+
 let now_button_icon = document.createElement('img')
 now_button_icon.style.cssText = "display: block;"
 now_button_icon.src = 'https://icooon-mono.com/i/icon_00252/icon_002521_16.png'
