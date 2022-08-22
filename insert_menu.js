@@ -11,14 +11,15 @@ now_button.style.cssText = "width: 48px; height: 48px;"
 // コメント欄をクリックする
 // ボタンをおす
 
-// time_placeholder はコメント入力できるようになるまでのデータ一時保管変数
-
+// コメント欄が現れないときのボタンのイベント
 now_button.addEventListener('click', function() {
     let play_time = document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-left-controls > div.ytp-time-display.notranslate > span:nth-child(2) > span.ytp-time-current").innerText;
     play_time = `${play_time}  \n`
     time_placeholder = `${time_placeholder}${play_time}`
-    let comment_text_area = document.querySelector("#contenteditable-root");
-    comment_text_area.insertAdjacentText('beforeend', play_time);
+    const url = new URL(window.location)
+    const video_id = url.searchParams.get("v")
+    window.localStorage.setItem(video_id, time_placeholder)
+
     alert(`いまの時間は ${play_time} です`)
 })
 
