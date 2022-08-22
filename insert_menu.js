@@ -3,7 +3,6 @@ let menu_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom > d
 let now_button = document.createElement('div');
 let time_placeholder = ''
 now_button.className = "clip-btn"
-now_button.style.cssText = "width: 48px; height: 48px; float:left; "
 
 // 現在の再現方法
 // コメント欄が現れるまでスクロールする
@@ -45,7 +44,7 @@ window.setTimeout(() =>{
 let now_button_icon = document.createElement('img')
 const clip_image_url = chrome.runtime.getURL('images/scissors.png')
 now_button_icon.src = clip_image_url
-now_button_icon.style.cssText = "width: 32px; height: 32px; padding:8px; cursor: pointer;"
+now_button_icon.className = 'now-button-icon'
 
 let now_button_tooltip = document.createElement('span')
 now_button_tooltip.textContent = 'タイムスタンプをコメント欄へ記録'

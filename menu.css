@@ -1,3 +1,17 @@
+.clip-btn {
+    width: 48px;
+    height: 48px;
+    float:left;
+}
+
+.now-button-icon {
+    width: 32px;
+    height: 32px;
+    padding:8px;
+    cursor: pointer;
+}
+
+/* ツールチップ */
 /* https://www.w3schools.com/howto/howto_css_tooltip.asp */
 .clip-btn {
     position: relative;
