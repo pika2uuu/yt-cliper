@@ -8,6 +8,11 @@
       "matches": ["*://www.youtube.com/watch?v=*"],
       "js": ["insert_menu.js"]
     }
-  ]
+  ],
+  "web_accessible_resources": [{
+    "resources": ["images/*"],
+    "matches": ["https://www.youtube.com/*"]
+  }]
+
 }
 

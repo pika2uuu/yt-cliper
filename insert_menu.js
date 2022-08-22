@@ -1,10 +1,9 @@
 
 let menu_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-right-controls")
-let now_button = document.createElement('input');
+let now_button = document.createElement('div');
 let time_placeholder = ''
-now_button.type = 'button'
 now_button.className = "clip-btn"
-now_button.style.cssText = "width: 48px; height: 48px;"
+now_button.style.cssText = "width: 48px; height: 48px; float:left; "
 
 // 現在の再現方法
 // コメント欄が現れるまでスクロールする
@@ -44,8 +43,9 @@ window.setTimeout(() =>{
 
 
 let now_button_icon = document.createElement('img')
-now_button_icon.style.cssText = "display: block;"
-now_button_icon.src = 'https://icooon-mono.com/i/icon_00252/icon_002521_16.png'
+const clip_image_url = chrome.runtime.getURL('images/scissors.png')
+now_button_icon.src = clip_image_url
+now_button_icon.style.cssText = "width: 32px; height: 32px; padding:8px; cursor: pointer;"
 now_button.appendChild(now_button_icon)
 menu_bar.prepend(now_button);
 
