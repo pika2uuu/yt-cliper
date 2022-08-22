@@ -6,6 +6,7 @@
   "content_scripts": [
     {
       "matches": ["*://www.youtube.com/watch?v=*"],
+      "css": ["menu.css"],
       "js": ["insert_menu.js"]
     }
   ],

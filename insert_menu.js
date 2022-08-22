@@ -46,7 +46,13 @@ let now_button_icon = document.createElement('img')
 const clip_image_url = chrome.runtime.getURL('images/scissors.png')
 now_button_icon.src = clip_image_url
 now_button_icon.style.cssText = "width: 32px; height: 32px; padding:8px; cursor: pointer;"
+
+let now_button_tooltip = document.createElement('span')
+now_button_tooltip.textContent = 'タイムスタンプをコメント欄へ記録'
+now_button_tooltip.className = 'tooltip'
+
 now_button.appendChild(now_button_icon)
+now_button.appendChild(now_button_tooltip)
 menu_bar.prepend(now_button);
 
 
