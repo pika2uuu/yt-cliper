@@ -3,7 +3,7 @@ let menu_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom > d
 
 // 切り抜きボタン
 let now_button = document.createElement('div');
-let time_placeholder = ''
+
 now_button.className = "custom-btn"
 // ボタンの中のハサミの画像
 let now_button_icon = document.createElement('img')
@@ -41,6 +41,10 @@ write_button.appendChild(write_button_tooltip)
 // メニューバーに挿入
 menu_bar.prepend(write_button);
 
+const url = new URL(window.location)
+const video_id = url.searchParams.get("v")
+const local_storage_data = window.localStorage.getItem(video_id)
+let time_placeholder = ( local_storage_data == null) ? '' : local_storage_data
 
 // 現在の再現方法
 // コメント欄が現れるまでスクロールする
@@ -53,8 +57,6 @@ now_button.addEventListener('click', function() {
     let play_time = document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-left-controls > div.ytp-time-display.notranslate > span:nth-child(2) > span.ytp-time-current").innerText;
     play_time = `${play_time}  \n`
     time_placeholder = `${time_placeholder}${play_time}`
-    const url = new URL(window.location)
-    const video_id = url.searchParams.get("v")
     window.localStorage.setItem(video_id, time_placeholder)
 
     // alert(`いまの時間は ${play_time} です`)
