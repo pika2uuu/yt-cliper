@@ -59,6 +59,6 @@ now_button.addEventListener('click', function() {
 //         alert('コメント欄が出現しました。');
 //     });
 //     observer.observe(targetNode, config)
-}, 4000);
+// }, 4000);
 
 menu_bar.prepend(now_button);
