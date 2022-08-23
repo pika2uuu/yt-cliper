@@ -53,8 +53,6 @@ now_button.addEventListener('click', function() {
     play_time = `${play_time}　\n` // 全角1文字空ける
     time_placeholder = `${time_placeholder}${play_time}`
     window.localStorage.setItem(video_id, time_placeholder)
-
-    // alert(`いまの時間は ${play_time} です`)
 })
 
 // 配信中はイベントリスナーつけない
