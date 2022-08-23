@@ -61,6 +61,25 @@ now_button.addEventListener('click', function() {
 
     // alert(`いまの時間は ${play_time} です`)
 })
+write_button.addEventListener('click', () => {
+    // 画面の底までスクロールさせるとコメント欄が出現するが、画面の横幅によって底の要素が違うのでbreakpointで識別
+    const breakpoint = 1016
+    const window_width = window.outerWidth
+    const bottom_element = (window_width < breakpoint) ?  document.querySelector("#button > ytd-button-renderer") : document.querySelector("#container > ytd-expander")
+    bottom_element.scrollIntoView({behavior: 'smooth', block: 'start'})
+
+    // コメント欄が遅延ロードで読み込まれるので念の為2秒待つ。その後書込みをしてlocalStrageから削除
+    setTimeout(() => {
+        // プレイスホルダーをクリックするとコメントが入力できるテキストエリアが出現する
+        const place_holder_area = document.querySelector("#placeholder-area");
+        place_holder_area.click();
+
+        const comment = time_placeholder
+        const text_area = document.querySelector("yt-formatted-string > #contenteditable-root")
+        text_area.insertAdjacentText('beforeend', comment)
+        window.localStorage.removeItem(video_id)
+    }, 2000)
+})
 
 // placeholder をクリックしてコメント欄を出現させる
 // document.querySelector("#placeholder-area").click()
