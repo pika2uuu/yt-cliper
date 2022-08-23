@@ -55,7 +55,7 @@ let time_placeholder = ( local_storage_data == null) ? '' : local_storage_data
 now_button.addEventListener('click', function() {
     // 再生時間をlocalStrangeに追記する
     let play_time = document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-left-controls > div.ytp-time-display.notranslate > span:nth-child(2) > span.ytp-time-current").innerText;
-    play_time = `${play_time}  \n`
+    play_time = `${play_time}　\n`
     time_placeholder = `${time_placeholder}${play_time}`
     window.localStorage.setItem(video_id, time_placeholder)
 
