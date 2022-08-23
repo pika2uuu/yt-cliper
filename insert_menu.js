@@ -4,6 +4,23 @@ let now_button = document.createElement('div');
 let time_placeholder = ''
 now_button.className = "clip-btn"
 
+// ボタンの中のハサミの画像
+let now_button_icon = document.createElement('img')
+const clip_image_url = chrome.runtime.getURL('images/scissors.png')
+now_button_icon.src = clip_image_url
+now_button_icon.className = 'now-button-icon'
+
+// 切り抜きボタンのツールチップ
+let now_button_tooltip = document.createElement('span')
+now_button_tooltip.textContent = 'タイムスタンプをコメント欄へ記録'
+now_button_tooltip.className = 'tooltip'
+
+// 切り抜きボタンを押した時に出るポップアップ
+let now_button_popup = document.createElement('span')
+now_button_popup.textContent = '記録しました'
+now_button_popup.className = 'clicked-popup'
+
+
 // 現在の再現方法
 // コメント欄が現れるまでスクロールする
 // コメント欄をクリックする
@@ -18,13 +35,13 @@ now_button.addEventListener('click', function() {
     const video_id = url.searchParams.get("v")
     window.localStorage.setItem(video_id, time_placeholder)
 
-    alert(`いまの時間は ${play_time} です`)
+    // alert(`いまの時間は ${play_time} です`)
 })
 
 // placeholder をクリックしてコメント欄を出現させる
 // document.querySelector("#placeholder-area").click()
 
-// コメント欄が出現するのを監視
+コメント欄が出現するのを監視
 window.setTimeout(() =>{
     const targetNode = document.querySelectorAll("#contents")[3]
     if(targetNode == null){
@@ -40,18 +57,9 @@ window.setTimeout(() =>{
     observer.observe(targetNode, config)
 }, 4000);
 
-
-let now_button_icon = document.createElement('img')
-const clip_image_url = chrome.runtime.getURL('images/scissors.png')
-now_button_icon.src = clip_image_url
-now_button_icon.className = 'now-button-icon'
-
-let now_button_tooltip = document.createElement('span')
-now_button_tooltip.textContent = 'タイムスタンプをコメント欄へ記録'
-now_button_tooltip.className = 'tooltip'
-
 now_button.appendChild(now_button_icon)
 now_button.appendChild(now_button_tooltip)
+now_button.appendChild(now_button_popup)
 menu_bar.prepend(now_button);
 
 
