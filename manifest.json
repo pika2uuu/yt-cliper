@@ -1,8 +1,11 @@
 {
-  "name": "拡張機能",
+  "name": "タイムスタンプ支援ツール",
   "version": "1.0",
   "manifest_version": 3,
-  "description": "説明欄",
+  "description": "配信を見ながらでもボタンを押すだけでタイムスタンプをメモできます。",
+  "icons": {
+    "48": "images/icon48.png"
+  },
   "content_scripts": [
     {
       "matches": ["*://www.youtube.com/watch?v=*"],
