@@ -1,5 +1,6 @@
 
 let menu_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-right-controls")
+let is_live = ( null != document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-left-controls > div.ytp-time-display.notranslate.ytp-live > button") )
 
 // 切り抜きボタン
 let now_button = document.createElement('div');
@@ -29,13 +30,13 @@ let write_button = document.createElement('div')
 write_button.className = 'custom-btn'
 //書き込みボタンの画像
 let write_button_icon = document.createElement('img')
-const write_image_url = chrome.runtime.getURL('images/write.png')
+const write_image_url = (is_live) ? chrome.runtime.getURL('images/write-disabled.png') : chrome.runtime.getURL('images/write.png')
 write_button_icon.src = write_image_url
 write_button_icon.className = 'write-button-icon'
 write_button.appendChild(write_button_icon)
 // ツールチップ
 let write_button_tooltip = document.createElement('span')
-write_button_tooltip.textContent = 'コメント欄に書き込む'
+write_button_tooltip.textContent = (is_live) ? "配信中は書き込めません" : "タイムスタンプを書き込む"
 write_button_tooltip.className = 'tooltip'
 write_button.appendChild(write_button_tooltip)
 // メニューバーに挿入
@@ -61,26 +62,29 @@ now_button.addEventListener('click', function() {
 
     // alert(`いまの時間は ${play_time} です`)
 })
-write_button.addEventListener('click', () => {
-    // 画面の底までスクロールさせるとコメント欄が出現するが、画面の横幅によって底の要素が違うのでbreakpointで識別
-    const breakpoint = 1016
-    const window_width = window.outerWidth
-    const bottom_element = (window_width < breakpoint) ?  document.querySelector("#button > ytd-button-renderer") : document.querySelector("#container > ytd-expander")
-    bottom_element.scrollIntoView({behavior: 'smooth', block: 'start'})
 
-    // コメント欄が遅延ロードで読み込まれるので念の為2秒待つ。その後書込みをしてlocalStrageから削除
-    setTimeout(() => {
-        // プレイスホルダーをクリックするとコメントが入力できるテキストエリアが出現する
-        const place_holder_area = document.querySelector("#placeholder-area");
-        place_holder_area.click();
+// 配信中はイベントリスナーつけない
+if (!is_live) {
+    write_button.addEventListener('click', () => {
+        // 画面の底までスクロールさせるとコメント欄が出現するが、画面の横幅によって底の要素が違うのでbreakpointで識別
+        const breakpoint = 1016
+        const window_width = window.outerWidth
+        const bottom_element = (window_width < breakpoint) ? document.querySelector("#button > ytd-button-renderer") : document.querySelector("#container > ytd-expander")
+        bottom_element.scrollIntoView({behavior: 'smooth', block: 'start'})
 
-        const comment = time_placeholder
-        const text_area = document.querySelector("yt-formatted-string > #contenteditable-root")
-        text_area.insertAdjacentText('beforeend', comment)
-        window.localStorage.removeItem(video_id)
-    }, 2000)
-})
+        // コメント欄が遅延ロードで読み込まれるので念の為2秒待つ。その後書込みをしてlocalStrageから削除
+        setTimeout(() => {
+            // プレイスホルダーをクリックするとコメントが入力できるテキストエリアが出現する
+            const place_holder_area = document.querySelector("#placeholder-area");
+            place_holder_area.click();
 
+            const comment = time_placeholder
+            const text_area = document.querySelector("yt-formatted-string > #contenteditable-root")
+            text_area.insertAdjacentText('beforeend', comment)
+            window.localStorage.removeItem(video_id)
+        }, 2000)
+    })
+}
 // placeholder をクリックしてコメント欄を出現させる
 // document.querySelector("#placeholder-area").click()
 
