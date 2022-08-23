@@ -1,4 +1,3 @@
-
 let menu_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-right-controls")
 let is_not_live = ( null == document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-left-controls > div.ytp-time-display.notranslate.ytp-live > button") )
 
@@ -41,12 +40,6 @@ write_button_tooltip.className = 'tooltip'
 write_button.appendChild(write_button_tooltip)
 // メニューバーに挿入
 menu_bar.prepend(write_button);
-
-
-// 現在の再現方法
-// コメント欄が現れるまでスクロールする
-// コメント欄をクリックする
-// ボタンをおす
 
 // コメント欄が現れないときのボタンのイベント
 now_button.addEventListener('click', function() {
@@ -94,21 +87,3 @@ if (is_not_live) {
         }, 2000)
     })
 }
-// placeholder をクリックしてコメント欄を出現させる
-// document.querySelector("#placeholder-area").click()
-
-// コメント欄が出現するのを監視
-// window.setTimeout(() =>{
-//     const targetNode = document.querySelectorAll("#contents")[3]
-//     if(targetNode == null){
-//         alert('存在しません')
-//     } else {
-//         alert('存在する')
-//     }
-//
-//     const config = { childList: true };
-//     const observer = new MutationObserver(() => {
-//         alert('コメント欄が出現しました。');
-//     });
-//     observer.observe(targetNode, config)
-// }, 4000);
