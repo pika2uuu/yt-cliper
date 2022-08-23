@@ -1,6 +1,6 @@
 
 let menu_bar = document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-right-controls")
-let is_live = ( null != document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-left-controls > div.ytp-time-display.notranslate.ytp-live > button") )
+let is_not_live = ( null == document.querySelector("#movie_player > div.ytp-chrome-bottom > div.ytp-chrome-controls > div.ytp-left-controls > div.ytp-time-display.notranslate.ytp-live > button") )
 
 // 切り抜きボタン
 let now_button = document.createElement('div');
@@ -30,13 +30,13 @@ let write_button = document.createElement('div')
 write_button.className = 'custom-btn'
 //書き込みボタンの画像
 let write_button_icon = document.createElement('img')
-const write_image_url = (is_live) ? chrome.runtime.getURL('images/write-disabled.png') : chrome.runtime.getURL('images/write.png')
+const write_image_url = (is_not_live) ? chrome.runtime.getURL('images/write.png') : chrome.runtime.getURL('images/write-disabled.png')
 write_button_icon.src = write_image_url
 write_button_icon.className = 'write-button-icon'
 write_button.appendChild(write_button_icon)
 // ツールチップ
 let write_button_tooltip = document.createElement('span')
-write_button_tooltip.textContent = (is_live) ? "配信中は書き込めません" : "タイムスタンプを書き込む"
+write_button_tooltip.textContent = (is_not_live) ? "タイムスタンプを書き込む" : "配信中は書き込めません"
 write_button_tooltip.className = 'tooltip'
 write_button.appendChild(write_button_tooltip)
 // メニューバーに挿入
@@ -64,7 +64,7 @@ now_button.addEventListener('click', function() {
 })
 
 // 配信中はイベントリスナーつけない
-if (!is_live) {
+if (is_not_live) {
     write_button.addEventListener('click', () => {
         // 画面の底までスクロールさせるとコメント欄が出現するが、画面の横幅によって底の要素が違うのでbreakpointで識別
         const breakpoint = 1016
