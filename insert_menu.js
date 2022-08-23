@@ -13,7 +13,7 @@ now_button_icon.className = 'now-button-icon'
 now_button.appendChild(now_button_icon)
 // 切り抜きボタンのツールチップ
 let now_button_tooltip = document.createElement('span')
-now_button_tooltip.textContent = 'タイムスタンプをコメント欄へ記録'
+now_button_tooltip.textContent = 'タイムスタンプを記録'
 now_button_tooltip.className = 'tooltip'
 now_button.appendChild(now_button_tooltip)
 // 切り抜きボタンを押した時に出るポップアップ
@@ -33,6 +33,11 @@ const write_image_url = chrome.runtime.getURL('images/write.png')
 write_button_icon.src = write_image_url
 write_button_icon.className = 'write-button-icon'
 write_button.appendChild(write_button_icon)
+// ツールチップ
+let write_button_tooltip = document.createElement('span')
+write_button_tooltip.textContent = 'コメント欄に書き込む'
+write_button_tooltip.className = 'tooltip'
+write_button.appendChild(write_button_tooltip)
 // メニューバーに挿入
 menu_bar.prepend(write_button);
 
