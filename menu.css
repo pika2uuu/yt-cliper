@@ -1,6 +1,6 @@
-.clip-btn {
-    width: 48px;
-    height: 48px;
+.custom-btn {
+    width: 40px;
+    height: 40px;
     float:left;
 }
 
@@ -11,14 +11,21 @@
     cursor: pointer;
 }
 
+.write-button-icon {
+    width: 32px;
+    height: 32px;
+    padding:8px;
+    cursor: pointer;
+}
+
 /* ツールチップ */
 /* https://www.w3schools.com/howto/howto_css_tooltip.asp */
-.clip-btn {
+.custom-btn {
     position: relative;
     display: inline-block;
 }
 
-.clip-btn .tooltip {
+.custom-btn .tooltip {
     visibility: hidden;
     width: 200px;
     background-color: rgba(24,26,32,0.9);
@@ -39,7 +46,7 @@
     transition: opacity 0.1s;
 }
 
-.clip-btn:hover .tooltip {
+.custom-btn:hover .tooltip {
     visibility: visible;
     opacity: 1;
 }
